@@ -6,7 +6,7 @@ SmartRecover AI closes the loop from payment failure detection to root-cause dia
 
 ---
 
-##  Problem Overview
+##  Problem Overview : 
 
 Payment failures in Indian digital commerce (UPI, Netbanking, Cards, e-Mandates) quietly bleed merchant margins:
 - **Blind Retries:** Naive scripts re-attempt payments immediately, failing repeatedly and triggering bank rate limits.
@@ -15,7 +15,7 @@ Payment failures in Indian digital commerce (UPI, Netbanking, Cards, e-Mandates)
 
 ---
 
-##  Key Features
+##  Key Features : 
 
 * **Intelligent Root-Cause Diagnosis:** Leverages Gemini Structured Outputs (`Pydantic` schema enforcement) to categorize failures into transient network spikes, fund limits, or expired instruments.
 * **Bounded Autonomous Actions:**
@@ -29,7 +29,7 @@ Payment failures in Indian digital commerce (UPI, Netbanking, Cards, e-Mandates)
 
 ---
 
-##  Architecture & System Design
+##  Architecture & System Design : 
 
 ```text
 +-------------------------------------------------------------+
@@ -67,7 +67,7 @@ Payment failures in Indian digital commerce (UPI, Netbanking, Cards, e-Mandates)
 
 ---
 
-##  Complete Project Structure & Files
+##  Complete Project Structure & Files : 
 ```
 
 razorpay-smart-recover/
@@ -86,7 +86,7 @@ razorpay-smart-recover/
 
 ---
 
-##  Quickstart & Execution
+##  Quickstart & Execution : 
 
 1. Activate Environment & Install Dependencies
 ```
@@ -104,7 +104,7 @@ streamlit run dashboard.py
 
 ---
 
-##  What Broke at 2 AM & The Engineering Fix
+##  What Broke at 2 AM & The Engineering Fix : 
 * The Problem:
    * Firing rapid batch calls caused transient API rate-limit spikes (503 UNAVAILABLE / 429 Rate Exceeded) and potential double-charging risks on repeated retries.
 
