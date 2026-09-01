@@ -105,9 +105,11 @@ streamlit run dashboard.py
 ---
 
 ##  What Broke at 2 AM & The Engineering Fix
-* The Problem: 
-Firing rapid batch calls caused transient API rate-limit spikes (503 UNAVAILABLE / 429 Rate Exceeded) and potential double-charging risks on repeated retries.
+* The Problem:
+   * Firing rapid batch calls caused transient API rate-limit spikes (503 UNAVAILABLE / 429 Rate Exceeded) and potential double-charging risks on repeated retries.
 
 * The Solution:
-Implemented a jittered exponential backoff retry wrapper (call_llm_with_retry) with deterministic fallbacks.
-Enforced strict programmatic bounding outside the LLM: capped transactions at 3 retries max before forcing an ESCALATE_MANUAL status into the audit ledger.
+   * Implemented a jittered exponential backoff retry wrapper (call_llm_with_retry) with deterministic fallbacks.
+   * Enforced strict programmatic bounding outside the LLM: capped transactions at 3 retries max before forcing an ESCALATE_MANUAL status into the audit ledger.
+
+
