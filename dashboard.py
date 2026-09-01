@@ -1,10 +1,20 @@
 import streamlit as st
 import json
 import pandas as pd
+from batch_simulator import run_batch
 
 st.set_page_config(page_title="SmartRecover AI Dashboard", layout="wide")
 st.title("SmartRecover AI — Autonomous Revenue Recovery")
 
+# Control Panel in Sidebar
+st.sidebar.header("Batch Controls")
+if st.sidebar.button("▶ Run 50-Record Batch Simulation"):
+    with st.spinner("Processing 50 transactions with Gemini & Razorpay guardrails..."):
+        run_batch(50)
+    st.sidebar.success("Batch simulation complete!")
+    st.rerun()
+
+# Load Audit Logs
 try:
     with open("audit_log.json", "r") as f:
         logs = json.load(f)
@@ -12,7 +22,7 @@ except Exception:
     logs = []
 
 if not logs:
-    st.warning("No audit log found. Run `python batch_simulator.py` to process records.")
+    st.warning("No audit log found. Click **'▶ Run 50-Record Batch Simulation'** in the left sidebar to generate live recovery data.")
 else:
     total_tx = len(logs)
     total_amount = sum(item["amount"] for item in logs)
