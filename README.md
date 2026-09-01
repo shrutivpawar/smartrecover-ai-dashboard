@@ -68,6 +68,7 @@ Payment failures in Indian digital commerce (UPI, Netbanking, Cards, e-Mandates)
 ---
 
 ##  Complete Project Structure & Files
+```
 
 razorpay-smart-recover/
 │
@@ -81,6 +82,7 @@ razorpay-smart-recover/
 ├── dashboard.py            # Streamlit live audit ledger & recovery visualizer
 ├── app.py                  # FastAPI webhook listener with HMAC signature check
 └── audit_log.json          # Persisted JSON ledger generated during runtime
+```
 
 ---
 
@@ -103,9 +105,9 @@ streamlit run dashboard.py
 ---
 
 ##  What Broke at 2 AM & The Engineering Fix
-The Problem: 
+* The Problem: 
 Firing rapid batch calls caused transient API rate-limit spikes (503 UNAVAILABLE / 429 Rate Exceeded) and potential double-charging risks on repeated retries.
 
-The Solution:
-Implemented a jittered exponential backoff retry wrapper (call_llm_with_retry) with deterministic fallbacks.
-Enforced strict programmatic bounding outside the LLM: capped transactions at 3 retries max before forcing an ESCALATE_MANUAL status into the audit ledger.
+* The Solution:
+** Implemented a jittered exponential backoff retry wrapper (call_llm_with_retry) with deterministic fallbacks.
+** Enforced strict programmatic bounding outside the LLM: capped transactions at 3 retries max before forcing an ESCALATE_MANUAL status into the audit ledger.
